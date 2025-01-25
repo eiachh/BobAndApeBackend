@@ -28,7 +28,8 @@ func (controller *Controller) SetSender(newSender Sender) {
 }
 
 func (controller *Controller) Move(userId uuid.UUID, cmd *types.MoveCommand) {
-
+	pkg := types.Package{Name: types.MoveCommandName, Body: cmd}
+	controller.sender.SendExcept(userId, pkg)
 }
 
 func (controller *Controller) AddAsLoggedIn(cmd *types.LoginCommand) {
