@@ -19,7 +19,7 @@ const (
 
 const (
 	MoveCommandName      CommandName = "MoveCommand"
-	AreaEnterCommandName CommandName = "LoginCommand"
+	AreaEnterCommandName CommandName = "AreaEnterCommand"
 )
 
 type MoveCommand struct {
