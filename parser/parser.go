@@ -51,6 +51,9 @@ func (msgParser *MessageParser) ParseIncomingMsg(uuidPkg types.PackageWithUuid) 
 	} else if incomingPkg.Name == types.MoveCommandName {
 		cmd := types.NewMoveCmd(incomingPkg.Body)
 		msgParser.controller.Move(uuidPkg.UserId, cmd)
+	} else if incomingPkg.Name == types.AreaEnterCommandName {
+		cmd := types.NewAreaEnterCmd(incomingPkg.Body)
+		msgParser.controller.AreaEnter(cmd)
 	}
 }
 

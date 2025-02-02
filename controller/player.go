@@ -27,14 +27,25 @@ func (controller *Controller) SetSender(newSender Sender) {
 	controller.sender = newSender
 }
 
-func (controller *Controller) Move(userId uuid.UUID, cmd *types.MoveCommand) {
-	pkg := types.Package{Name: types.MoveCommandName, Body: cmd}
-	controller.sender.SendExcept(userId, pkg)
-}
-
 func (controller *Controller) AddAsLoggedIn(cmd *types.LoginCommand) {
 	controller.players[cmd.UserId] = types.Player{
 		UserID: cmd.UserId,
 		Name:   cmd.NameRequest,
 	}
+}
+
+func (controller *Controller) Move(userId uuid.UUID, cmd *types.MoveCommand) {
+	pkg := types.Package{Name: types.MoveCommandName, Body: cmd}
+	controller.sender.SendExcept(userId, pkg)
+}
+
+func (controller *Controller) AreaEnter(userId uuid.UUID, cmd *types.AreaEnterCommand) {
+
+	var pkg types.Package
+	if cmd.AreaName == string(types.GorillaWarfareArena) {
+		pkg = types.Package{Name: types.SpawnMobCommandName, Body: types.HarambeSpawn}
+	}
+
+	controller.sender.SendTo(userId, pkg)
+
 }

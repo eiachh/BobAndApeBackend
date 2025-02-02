@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	LoginCommandName CommandName = "LoginCommand"
+	LoginCommandName       CommandName = "LoginCommand"
+	LoginAcceptCommandName CommandName = "LoginAcceptCommand"
 )
 
 type LoginCommand struct {

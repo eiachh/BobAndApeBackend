@@ -102,7 +102,7 @@ func (conHandler *ConnectionHandler) HandleLogin(conn *websocket.Conn) (uuid.UUI
 	conHandler.IncommingMsg <- types.PackageWithUuid{UserId: loginCmd.UserId, BytePackage: pkgBytes}
 
 	conHandler.sendPkgTo(conn, types.Package{
-		Name: types.LoginCommandName,
+		Name: types.LoginAcceptCommandName,
 		Body: types.LoginAccept{ReceivedUserID: loginCmd.UserId}})
 	return loginCmd.UserId, nil
 
