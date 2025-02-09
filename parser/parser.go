@@ -53,7 +53,7 @@ func (msgParser *MessageParser) ParseIncomingMsg(uuidPkg types.PackageWithUuid) 
 		msgParser.controller.Move(uuidPkg.UserId, cmd)
 	} else if incomingPkg.Name == types.AreaEnterCommandName {
 		cmd := types.NewAreaEnterCmd(incomingPkg.Body)
-		msgParser.controller.AreaEnter(cmd)
+		msgParser.controller.AreaEnter(uuidPkg.UserId, cmd)
 	}
 }
 

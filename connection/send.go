@@ -34,6 +34,7 @@ func (conHandler *ConnectionHandler) SendExcept(except uuid.UUID, pkg types.Pack
 func (conHandler *ConnectionHandler) sendPkgTo(conn *websocket.Conn, pkg types.Package) {
 	log.Println("Sending back response")
 	pkgStr, _ := json.Marshal(pkg)
+	log.Println(pkgStr)
 	// Type 1 is txt message
 	if err := conn.WriteMessage(1, pkgStr); err != nil {
 		log.Println("Error sending message:", err)
